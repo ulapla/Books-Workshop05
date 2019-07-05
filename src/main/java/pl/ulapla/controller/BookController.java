@@ -49,6 +49,16 @@ public class BookController {
                 book.getType());
     }
 
+    @PutMapping("/editBook")
+    public void editBook(@RequestBody Book book){
+        memoryBookService.editBook(book.getId(),
+                book.getIsbn(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getType());
+    }
+
 //    @RequestParam("id") long id,
 //    @RequestParam("isbn")String isbn,
 //    @RequestParam("title")String title,
