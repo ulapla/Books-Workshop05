@@ -4,6 +4,7 @@ package pl.ulapla.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.ulapla.model.Book;
+import pl.ulapla.model.BookService;
 import pl.ulapla.model.MemoryBookService;
 
 import java.util.List;
@@ -11,11 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    private MemoryBookService memoryBookService;
+    private BookService bookService;
 
     @Autowired
-    public BookController(MemoryBookService memoryBookService) {
-        this.memoryBookService = memoryBookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping("/hello")
@@ -31,17 +32,17 @@ public class BookController {
 
     @RequestMapping("/allBooks")
     public List<Book> getAllBooks(){
-        return memoryBookService.getList();
+        return bookService.getList();
     }
 
     @RequestMapping("/book/{id}")
     public Book getBookById(@PathVariable("id") long id){
-        return memoryBookService.getBookById(id);
+        return bookService.getBookById(id);
     }
 
     @PostMapping("/addBook")
     public void addBook(@RequestBody Book book){
-        memoryBookService.addBook(book.getId(),
+        bookService.addBook(book.getId(),
                 book.getIsbn(),
                 book.getTitle(),
                 book.getAuthor(),
@@ -51,7 +52,7 @@ public class BookController {
 
     @PutMapping("/editBook")
     public void editBook(@RequestBody Book book){
-        memoryBookService.editBook(book.getId(),
+        bookService.editBook(book.getId(),
                 book.getIsbn(),
                 book.getTitle(),
                 book.getAuthor(),
@@ -61,7 +62,7 @@ public class BookController {
 
     @DeleteMapping("/deleteBook/{id}")
     public void deleteBook(@PathVariable("id")long id){
-        memoryBookService.removeBook(id);
+        bookService.removeBook(id);
     }
 
 //    @RequestParam("id") long id,
