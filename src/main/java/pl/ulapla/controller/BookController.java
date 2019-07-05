@@ -1,13 +1,21 @@
 package pl.ulapla.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ulapla.model.Book;
+import pl.ulapla.model.MemoryBookService;
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
+    private MemoryBookService memoryBookService;
+
+    @Autowired
+    public BookController(MemoryBookService memoryBookService) {
+        this.memoryBookService = memoryBookService;
+    }
+
     @RequestMapping("/hello")
     public String hello(){
         return "{hello: World}";
