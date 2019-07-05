@@ -39,7 +39,7 @@ public class BookController {
         return memoryBookService.getBookById(id);
     }
 
-    @PostMapping("/createBook")
+    @PostMapping("/addBook")
     public void addBook(@RequestBody Book book){
         memoryBookService.addBook(book.getId(),
                 book.getIsbn(),
@@ -57,6 +57,11 @@ public class BookController {
                 book.getAuthor(),
                 book.getPublisher(),
                 book.getType());
+    }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public void deleteBook(@PathVariable("id")long id){
+        memoryBookService.removeBook(id);
     }
 
 //    @RequestParam("id") long id,
