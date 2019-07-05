@@ -42,6 +42,10 @@ public class MemoryBookService {
         book.setType(type);
     }
 
+    public void addBook(long id, String isbn, String title, String author, String publisher, String type){
+        list.add(new Book(id,isbn,title,author,publisher,type));
+    }
+
     public void removeBook(long id){
         Book book = list.stream()
                 .filter(b -> b.getId() == id)

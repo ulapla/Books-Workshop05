@@ -1,9 +1,8 @@
 package pl.ulapla.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ulapla.model.Book;
 import pl.ulapla.model.MemoryBookService;
 
@@ -40,7 +39,22 @@ public class BookController {
         return memoryBookService.getBookById(id);
     }
 
+    @PostMapping("/createBook")
+    public void addBook(@RequestBody Book book){
+        memoryBookService.addBook(book.getId(),
+                book.getIsbn(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getType());
+    }
 
+//    @RequestParam("id") long id,
+//    @RequestParam("isbn")String isbn,
+//    @RequestParam("title")String title,
+//    @RequestParam("author")String author,
+//    @RequestParam("publisher")String publisher,
+//    @RequestParam("type")String type
 }
 
 
