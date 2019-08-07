@@ -30,21 +30,18 @@ public class MemoryBookService implements BookService{
         return book;
     }
 
-    public void editBook(long id, String isbn, String title, String author, String publisher, String type){
+    public void editBook(Book editedBook){
         Book book = list.stream()
-                .filter(b -> b.getId() == id)
+                .filter(b -> b.getId() == editedBook.getId())
                 .collect(Collectors.toList())
                 .get(0);
-        book.setIsbn(isbn);
-        book.setTitle(title);
-        book.setAuthor(author);
-        book.setPublisher(publisher);
-        book.setType(type);
+        book.setIsbn(editedBook.getIsbn());
+        book.setTitle(editedBook.getTitle());
+        book.setAuthor(editedBook.getAuthor());
+        book.setPublisher(editedBook.getPublisher());
+        book.setType(editedBook.getType());
     }
 
-    public void addBook(long id, String isbn, String title, String author, String publisher, String type){
-        list.add(new Book(id,isbn,title,author,publisher,type));
-    }
 
     public void removeBook(long id){
         Book book = list.stream()
@@ -52,6 +49,11 @@ public class MemoryBookService implements BookService{
                 .collect(Collectors.toList())
                 .get(0);
         list.remove(book);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        list.add(book);
     }
 
 }

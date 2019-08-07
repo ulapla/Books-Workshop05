@@ -41,23 +41,13 @@ public class BookController {
     }
 
     @PostMapping("/addBook")
-    public void addBook(@RequestBody Book book){
-        bookService.addBook(book.getId(),
-                book.getIsbn(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getType());
+    public void addBook(@RequestBody Book book) {
+        bookService.addBook(book);
     }
 
     @PutMapping("/editBook")
-    public void editBook(@RequestBody Book book){
-        bookService.editBook(book.getId(),
-                book.getIsbn(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getType());
+    public void editBook(@RequestBody Book book) {
+        bookService.editBook(book);
     }
 
     @DeleteMapping("/deleteBook/{id}")
@@ -65,12 +55,6 @@ public class BookController {
         bookService.removeBook(id);
     }
 
-//    @RequestParam("id") long id,
-//    @RequestParam("isbn")String isbn,
-//    @RequestParam("title")String title,
-//    @RequestParam("author")String author,
-//    @RequestParam("publisher")String publisher,
-//    @RequestParam("type")String type
 }
 
 
